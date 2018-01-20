@@ -1,0 +1,8 @@
+<div class="post-detail">
+    <% if (post.rating) { %>
+        <%- partial('_partial/rating.ejs', { post: post }) %>
+    <% } %>
+    <div class="cover">
+        <img class="greyscale" src="assets/images/<%= post.cover %>" alt="">
+    </div>
+</div>

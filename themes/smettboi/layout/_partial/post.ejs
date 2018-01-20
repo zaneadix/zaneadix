@@ -1,22 +1,38 @@
 
 <div class="post">
-    <h4 class="title"><%= post.title %></h4>
+    
+    <div class="d-flex">
+        <h4 class="title mr-auto"><%= post.title %></h4>
+        <span class="time"><%= timePassed(post.date) %></span>
+    </div>
+    
+
+    <hr>
+    
     <div class="row">
-        <div class="col-md-5">
-            <div class="feature-card">
-                <!-- <p><small><%= date(post.date, 'M.D.YY') %></small></p> -->
-                <div class="cover">
-                    <img class="greyscale" src="assets/images/<%= post.cover %>" alt="">
-                </div>
-                <% if (post.rating) { %>
-                    <%- partial('_partial/rating.ejs', { post: post }) %>
-                <% } %>
+
+        <div class="col-lg-4">
+            
+            <div class="post-detail-wrap d-none d-lg-block">
+                <%- partial('_partial/post-detail.ejs', { post: post }) %>
             </div>
+            
         </div>
-        <div class="col-md-7">
+
+        <div class="col-lg-8">
+
             <div class="body">
-                <%- post.content %>
+
+                <span class="post-detail-wrap d-lg-none">
+                    <%- partial('_partial/post-detail.ejs', { post: post }) %>
+                </span>
+                
+                <div class="content">
+                    <%- post.content %>
+                </div>
+                
             </div>
+
         </div>
     </div>
 </div>
