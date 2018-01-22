@@ -6,6 +6,10 @@ body {
     color: $smettblack;
 }
 
+html {
+    background-color: #000;
+}
+
 h1, .h1,
 h2, .h2,
 h3, .h3,
@@ -19,18 +23,30 @@ h6, .h6 {
 
 header {
     &.navbar {
+
+        display: none;
+        
+        width: 100%;
+        position: fixed;
+        background-color: $smettbreeze;
+        z-index: 100;
+        border-bottom: 1px solid rgba(0,0,0,.1);
+        padding: 0;
+
         .navbar-brand {
             font-family: $font-family-heading;
             font-size: 2rem;
             margin-bottom: 0;
         }
         .social-links {
-            li {
-                padding: .3rem;
 
+            margin-right: -1.3rem;
+            li {
+                padding: .5rem 1.3rem;
                 a {
                     color: #000;
                     line-height: 0;
+                    padding: 0;
 
                     &.icomoon-spotify {
                         font-size: 1.15rem;
@@ -48,7 +64,16 @@ hr {
 
 html {
     font-size: 16px;
-    background-color: $smettbreeze;
+    background-color: #000;
+
+    &::before {
+        content: "hey.";
+        display: block;
+        position: absolute;
+        left: 50%;
+        top: 0;
+        z-index: 100;
+    }
 }
 
 img.greyscale {
@@ -63,5 +88,40 @@ p {
 }
 
 .page-content {
-    padding-top: 3rem;
+    padding-top: 6rem;
+}
+
+.followMeBar {
+  position: relative;
+  z-index: 10;
+  background-color: $smettbreeze;
+}
+
+.followMeBar.fixed {
+  position: fixed;
+  top: 0;
+  box-sizing: border-box;
+  // z-index: 10;
+  
+  width: 100%;
+
+  @media (min-width: 576px) {
+      max-width: 510px;
+  }
+
+  @media (min-width: 768px) {
+      max-width: 690px;
+  }
+
+  @media (min-width: 992px) {
+      max-width: 930px;
+  }
+
+  @media (min-width: 1200px) {
+      max-width: 1110px;
+  }
+}
+
+.followMeBar.fixed.absolute {
+  position: absolute;
 }
