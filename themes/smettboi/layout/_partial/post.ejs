@@ -1,42 +1,33 @@
 
 <div class="post">
-    
-    <div class="followMeBar">
-        <div class="d-flex ">
-            <h4 class="title mr-auto"><%= post.title %></h4>
-            <span class="time"><%= timePassed(post.date) %></span>
 
+    <div class="post-header">
+        <div class="container">
+            <div class="title-bar d-flex">
+                <h4 class="title mr-auto"><%= post.title %></h4>
+                <span class="time"><%= timePassed(post.date) %></span>
+
+            </div>
         </div>
-        <hr>
     </div>
     
-    
-    
-    
-    <div class="row">
-
-        <div class="col-lg-4">
-            
-            <div class="post-detail-wrap d-none d-lg-block">
-                <%- partial('_partial/post-detail.ejs', { post: post }) %>
-            </div>
-            
-        </div>
-
-        <div class="col-lg-8">
-
-            <div class="body">
-
-                <span class="post-detail-wrap d-lg-none">
-                    <%- partial('_partial/post-detail.ejs', { post: post }) %>
-                </span>
-                
-                <div class="content">
-                    <%- post.content %>
+    <div class="post-content">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4">
+                    <div class="d-none d-lg-block">
+                        <%- partial('_partial/post-meta.ejs', { post: post, small: false }) %>
+                    </div>
                 </div>
-                
+                <div class="col-lg-8">
+                    <span class="d-lg-none">
+                        <%- partial('_partial/post-meta.ejs', { post: post, small: true }) %>
+                    </span>
+                    <div class="body">
+                        <%- post.content %>
+                    </div>
+                </div>
             </div>
-
         </div>
     </div>
 </div>

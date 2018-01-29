@@ -1,4 +1,4 @@
-<div class="post-detail">
+<div class="post-meta <%= small ? 'small' : '' %>">
     <% if (post.rating) { %>
         <%- partial('_partial/rating.ejs', { post: post }) %>
     <% } %>

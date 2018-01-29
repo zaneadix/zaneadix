@@ -1,7 +1,9 @@
 <div class="rating">
     <div class="end no">No</div>
     <div class="bar">
-        <div class="fill" style="width: <%= post.score %>%;">
+        <div class="fill"
+            data-score="<%= post.score %>"
+            style="width: <%= post.score %>%;">
             <span class="value"><%= post.rating %></span>
         </div>
     </div>

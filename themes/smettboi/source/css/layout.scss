@@ -24,7 +24,7 @@ h6, .h6 {
 header {
     &.navbar {
 
-        display: none;
+        // display: none;
         
         width: 100%;
         position: fixed;
@@ -91,37 +91,19 @@ p {
     padding-top: 6rem;
 }
 
-.followMeBar {
+.post-header {
   position: relative;
-  z-index: 10;
   background-color: $smettbreeze;
 }
 
-.followMeBar.fixed {
+.post-header.fixed {
   position: fixed;
-  top: 0;
   box-sizing: border-box;
-  // z-index: 10;
-  
+  z-index: 90;
+  // top: 59px;
   width: 100%;
-
-  @media (min-width: 576px) {
-      max-width: 510px;
-  }
-
-  @media (min-width: 768px) {
-      max-width: 690px;
-  }
-
-  @media (min-width: 992px) {
-      max-width: 930px;
-  }
-
-  @media (min-width: 1200px) {
-      max-width: 1110px;
-  }
 }
 
-.followMeBar.fixed.absolute {
+.post-header.fixed.absolute {
   position: absolute;
 }
