@@ -1,12 +1,12 @@
 ---
-title: Stuff Being Put in my Butthole
-creator: David Wong
-date: 2018-01-13 01:30:51
+title: The Florida Project
+creator: Sean Baker / Chris Bergoch
+date: 2018-01-30 12:00:00
 tags:
-type: book
-cover: john-dies-at-the-end.jpg
-score: 85
-rating: Soy Sauce
+type: movie
+cover: the-florida-project.jpg
+score: 80
+rating: Free Ice Cream
 ---
 There's this guy I knew in high school. He was good for a laugh but usually at the expense of someone's balls. I didn't notice when he hadn't been around for a while till someone asked about him. It didn't take long till there was a story going around that he wandered off drunk, got clipped by a train and stumbled into the ocean, never to be seen again. I looked him up on Facebook - he's fine. 
 
