@@ -6,13 +6,13 @@ $(function() {
     var $postHeaders = $('.post-header');
     var $ratings = $('.rating');
 
-    function initRatings () {
-        $ratings.each(function (index) {
-            $rating = $(this);
-            $fill = $rating.find('.fill');
-            $fill.attr('style', 'width: 0%');
-        })
-    }
+    // function initRatings () {
+    //     $ratings.each(function (index) {
+    //         $rating = $(this);
+    //         $fill = $rating.find('.fill');
+    //         $fill.attr('style', 'width: 0%');
+    //     })
+    // }
 
     function initFixiePositions () {
         $header.data('setHeight', $header.outerHeight());
@@ -27,8 +27,7 @@ $(function() {
         fixieCheck();
     }
 
-    function setFixiePositions (postHeader) {
-        var $postHeader = (postHeader instanceof jQuery) ? postHeader : $(postHeader);
+    function setFixiePositions ($postHeader) {
         $postHeader
             .data('setTop', $postHeader.offset().top)
             .data('setHeight', $postHeader.outerHeight())
@@ -40,63 +39,59 @@ $(function() {
         var attrs = {};
         attrs.clazz = $postHeader.attr('class');
         attrs.style = $postHeader.attr('style');
-        $postHeader.removeClass('fixed absolute').removeAttr("style");
+        $postHeader.removeClass('fix push').removeAttr("style");
         return attrs;
     }
     
     function fixieCheck () {
 
         var headerHeight = $header.data('setHeight');
-        var $fixedHeader;
-        var $absoluteHeader;
 
-        for (var index = 0; index <= $postHeaders.length; index++) {
+        $postHeaders.each(function (index) {
 
-            var $postHeader = $postHeaders.eq(index);
+            var $postHeader = $(this);
+            var $post = $postHeader.parents('.post');
+            var $postContent = $post.find('.post-content');
+
+            var scrollTop = $window.scrollTop();
             var setTop = $postHeader.data('setTop');
+            var postBottom = ($postContent.offset().top + $postContent.outerHeight()) - $postHeader.data('setHeight');
 
-            if (setTop <= ($window.scrollTop() + headerHeight)) {
-                $fixedHeader = $postHeader;
-                $absoluteHeader = (index-1 >= 0) ? $postHeaders.eq(index-1) : null;
+
+            if (setTop <= (scrollTop + headerHeight)) {
+                $postHeader.addClass("fix").css("top", headerHeight);
+                if ((scrollTop+headerHeight) >= postBottom) {
+                    $postHeader.addClass("push").css("top", postBottom);
+                } else {
+                    $postHeader.removeClass("push").css("top", headerHeight);
+                }
             } else {
-                break;
+                scrubFixie($postHeader);
             }
-        }
 
-        
-        if ($fixedHeader) {
-            console.log('fixed:', $fixedHeader.find('.title').text());
-        }
-        if ($absoluteHeader) {
-            console.log('absolute:', $absoluteHeader.find('.title').text());
-        }
-        
+            // if (setTop <= ($window.scrollTop() + headerHeight)) {
+                
+            //     var $nextPostHeader = $postHeaders.eq(index+1);
+            //     var pushPosition = $nextPostHeader.data('setTop') - $postHeader.data('setHeight');
 
+            //     if ($nextPostHeader.length && ($postHeader.offset().top >= pushPosition)) {
+            //         $postHeader.addClass("push").css("top", pushPosition);
+            //     } else {
+            //         $postHeader.addClass("fix").css("top", headerHeight);
+            //     }
 
-        // $postHeaders.each(function (index) {
+            // } else {
 
-        //     var $postHeader = $(this);
-        //     var setTop = $postHeader.data('setTop');
+            //     scrubFixie($postHeader);
+            //     var $prevPostHeader = $postHeaders.eq(index-1);
 
-        //     if (setTop <= ($window.scrollTop() + headerHeight)) {
-        //         $postHeader.addClass("fixed").css("top", '0px');;
-
-
-        //         var $nextPostHeader = $postHeaders.eq(index+1);
-        //         var $nextTop = $nextPostHeader.data('setTop') - $postHeader.data('setHeight');
-
-        //         if ($nextPostHeader.length > 0 && $postHeader.offset().top >= $nextTop) {
-        //             $postHeader.addClass("absolute").css("top", $nextTop);
-        //         }
-        //     } else {
-
-        //         $postHeader.removeClass("fixed");
-        //         var $prevPostHeader = $postHeaders.eq(index - 1);
-        //         if ($prevPostHeader.length > 0 && $window.scrollTop() <= $postHeader.data('setTop') - $postHeader.data('setHeight')) {
-        //             $prevPostHeader.removeClass("absolute").removeAttr("style");
-        //         }
-        //     }
-        // });
+            //     if ($prevPostHeader.length && $prevPostHeader.hasClass('push')) {
+            //         if ($prevPostHeader.offset().top >= ($window.scrollTop() + headerHeight)) {
+            //             $prevPostHeader.removeClass("push").css("top", headerHeight);
+            //         }
+            //     }
+            // }
+        });
     }
 
     $postHeaders.wrap('<div class="fixieHeightKeeper" />');

@@ -96,14 +96,16 @@ p {
   background-color: $smettbreeze;
 }
 
-.post-header.fixed {
-  position: fixed;
+.post-header.fix, .post-header.push {
   box-sizing: border-box;
   z-index: 90;
-  // top: 59px;
   width: 100%;
 }
 
-.post-header.fixed.absolute {
+.post-header.fix {
+  position: fixed;
+}
+
+.post-header.fix.push {
   position: absolute;
 }
